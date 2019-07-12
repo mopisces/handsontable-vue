@@ -1,4 +1,2 @@
 # handsontable-vue
-vue with handsontable
-vue-cli3
-handsontable plugin
+vue-cli3 with handsontable plugin
