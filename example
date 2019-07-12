@@ -5,13 +5,14 @@
         <button type="button" @click="hiddenCol('Code')">Code</button>
         <button type="button" @click="hiddenCol('Currency')">Currency</button>
 			</div>
-			<hot-table :data="data" :settings="hotSettings" licenseKey="non-commercial-and-evaluation" ref="testHot" :root="root"></hot-table>
+			<hot-table  :settings="hotSettings" licenseKey="non-commercial-and-evaluation" ref="testHot" :root="root"></hot-table>
       <button type="button" @click="exportCsv()">导出文件（CSV格式）</button>
 	</div>
 </template>
 <script>
 	import { HotTable } from '@handsontable/vue';//引入handsontable组件
 	import 'handsontable/languages/zh-CN';//引入语言类型
+	import 'Handsontable' from 'handsontable';
 	export default {
 		data() {
 			return {
@@ -31,450 +32,222 @@
 							range:6,
 							phone:'huawei'
 						},
-						{
-							id: 2,
-							flag: 'JPY',
-							currencyCode: 'JPY',
-							currency: 'Japanese Yen',
-							level: 124.3870,
-							units: 'JPY / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0001,
-							data:'07/11/2019',
-							stars:2,
-							range:6,
-							phone:'iphone'
-						},
-						{
-							id: 3,
-							flag: 'GBP',
-							currencyCode: 'GBP',
-							currency: 'Pound Sterling',
-							level: 0.6396,
-							units: 'GBP / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.00,
-							stars:2,
-							range:2,
-							phone:'mi'
-						},
-						{
-							id: 4,
-							flag: 'CHF',
-							currencyCode: 'CHF',
-							currency: 'Swiss Franc',
-							level: 0.9775,
-							units: 'CHF / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0008,
-							stars:2,
-							range:2,
-							phone:'mi'
-						},
-						{
-							id: 5,
-							flag: 'CAD',
-							currencyCode: 'CAD',
-							currency: 'Canadian Dollar',
-							level: 1.3097,
-							units: 'CAD / USD',
-							asOf: '08/19/2019',
-							onedChng: -0.0005,
-							stars:2,
-							range:2,
-							phone:'mi'
-						},
-						{
-							id: 6,
-							flag: 'AUD',
-							currencyCode: 'AUD',
-							currency: 'Australian Dollar',
-							level: 1.3589,
-							units: 'AUD / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0020,
-							stars:2,
-							range:6,
-							phone:'iphone'
-						},
-						{
-							id: 7,
-							flag: 'NZD',
-							currencyCode: 'NZD',
-							currency: 'New Zealand Dollar',
-							level: 1.5218,
-							units: 'NZD / USD',
-							asOf: '08/19/2019',
-							onedChng: -0.0036,
-							stars:2,
-							range:6,
-							phone:'iphone'
-						},
-						{
-							id: 8,
-							flag: 'SEK',
-							currencyCode: 'SEK',
-							currency: 'Swedish Krona',
-							level: 8.5280,
-							units: 'SEK / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0016,
-							stars:2,
-							range:6,
-							phone:'iphone'
-						},
-						{
-							id: 9,
-							flag: 'NOK',
-							currencyCode: 'NOK',
-							currency: 'Norwegian Krone',
-							level: 8.2433,
-							units: 'NOK / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0008,
-							stars:8,
-							range:16,
-							phone:'all'
-						},
-						{
-							id: 10,
-							flag: 'BRL',
-							currencyCode: 'BRL',
-							currency: 'Brazilian Real',
-							level: 3.4806,
-							units: 'BRL / USD',
-							asOf: '08/19/2019',
-							onedChng: -0.0009,
-							stars:8,
-							range:16,
-							phone:'all'
-						},
-						{
-							id: 11,
-							flag: 'CNY',
-							currencyCode: 'CNY',
-							currency: 'Chinese Yuan',
-							level: 6.3961,
-							units: 'CNY / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0004,
-							stars:8,
-							range:16,
-							phone:'all'
-						},
-						{
-							id: 12,
-							flag: 'RUB',
-							currencyCode: 'RUB',
-							currency: 'Russian Rouble',
-							level: 65.5980,
-							units: 'RUB / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0059,
-							stars:5,
-							range:6,
-							phone:'huawei'
-						},
-						{
-							id: 13,
-							flag: 'INR',
-							currencyCode: 'INR',
-							currency: 'Indian Rupee',
-							level: 65.3724,
-							units: 'INR / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0026,
-							stars:5,
-							range:6,
-							phone:'huawei'
-						},
-						{
-							id: 14,
-							flag: 'TRY',
-							currencyCode: 'TRY',
-							currency: 'New Turkish Lira',
-							level: 2.8689,
-							units: 'TRY / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0092,
-							onedChng: 0.0016,
-							stars:2,
-							range:6,
-							phone:'iphone'
-						},
-						{
-							id: 15,
-							flag: 'THB',
-							currencyCode: 'THB',
-							currency: 'Thai Baht',
-							level: 35.5029,
-							units: 'THB / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0044,
-							stars:2,
-							range:2,
-							phone:'mi'
-
-						},
-						{
-							id: 16,
-							flag: 'IDR',
-							currencyCode: 'IDR',
-							currency: 'Indonesian Rupiah',
-							level: 13.83,
-							units: 'IDR / USD',
-							asOf: '08/19/2019',
-							onedChng: -0.0009,
-							stars:2,
-							range:6,
-							phone:'iphone'
-						},
-						{
-							id: 17,
-							flag: 'MYR',
-							currencyCode: 'MYR',
-							currency: 'Malaysian Ringgit',
-							level: 4.0949,
-							units: 'MYR / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0010,
-							stars:2,
-							range:2,
-							phone:'mi'
-
-						},
-						{
-							id: 18,
-							flag: 'MXN',
-							currencyCode: 'MXN',
-							currency: 'Mexican New Peso',
-							level: 16.4309,
-							units: 'MXN / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0017,
-							stars:8,
-							range:16,
-							phone:'all'
-						},
-						{
-							id: 19,
-							flag: 'ARS',
-							currencyCode: 'ARS',
-							currency: 'Argentinian Peso',
-							level: 9.2534,
-							units: 'ARS / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0011,
-							stars:2,
-							range:6,
-							phone:'iphone'
-						},
-						{
-							id: 20,
-							flag: 'DKK',
-							currencyCode: 'DKK',
-							currency: 'Danish Krone',
-							level: 6.7417,
-							units: 'DKK / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0025,
-							stars:2,
-							range:6,
-							phone:'iphone'
-						},
-						{
-							id: 21,
-							flag: 'ILS',
-							currencyCode: 'ILS',
-							currency: 'Israeli New Sheqel',
-							level: 3.8262,
-							units: 'ILS / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0084,
-							stars:8,
-							range:16,
-							phone:'all'
-						},
-						{
-							id: 22,
-							flag: 'PHP',
-							currencyCode: 'PHP',
-							currency: 'Philippine Peso',
-							level: 46.3108,
-							units: 'PHP / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0012,
-							stars:2,
-							range:6,
-							phone:'iphone'
-						}
+						//...
 					],
 				dataArray:[
 					[22,'PHP','PHP','Philippine Peso',46.3108,'PHP / USD','08/19/2019', 0.0012, 0.00121, 0.0012,'PHP','PHP','Philippine Peso'],
-					[21,'PHP','PHP','Philippine Peso',46.3108,'PHP / USD','08/19/2019', 0.0012, 0.0012, 0.0012,'PHP','PHP','Philippine Peso'],
-					[20,'PHP','PHP','Philippine Peso',46.3108,'PHP / USD','08/19/2019', 0.0012, 0.0012, 0.0012,'PHP','PHP','Philippine Peso'],
-					[23,'PHP','PHP','Philippine Peso',46.3108,'PHP / USD','08/19/2019', 0.0012, 0.0012, 0.0012,'PHP','PHP','Philippine Peso'],
-					[24,'PHP','PHP','Philippine Peso',46.3108,'PHP / USD','08/19/2019', 0.0012, 0.0012, 0.0012,'PHP','PHP','Philippine Peso']
+					//...
 				],//数组型data，可以插入行
 				hotSettings :{
+					language: "zh-CN",//设置语言（需要引入）
+					data:Handsontable.helper.createSpreadsheetData(100, 18),//可以使用组件自带函数填充值
 					columns:[
-            {},//可以是空对象
-            {
-              data: 'flag',
-              renderer: (instance, td, row, col, prop, value, cellProperties)=>{
-                //渲染列的方法
-                td.innerHTML = value;
-              }
-            },
-            {
-              data: 'currencyCode',
-              type: 'text'
-            },
-            {
-              data: 'currency',
-              type: 'text'
-            },
-            {
-              data: 'level',
-              type: 'numeric',
-              numericFormat: {
-                pattern: '0.0000'
-              }
-            },
-            {
-              data: 'units',
-              type: 'text'
-            },
-            {
-              data: 'asOf',
-              type: 'date',
-              dateFormat: 'MM/DD/YYYY'
-            },
-            {
-              data: 'onedChng',
-              type: 'numeric',
-              numericFormat: {
-                pattern: '0.00%'
-              }
-            }
+			            {
+			            	editor: 'select',//编辑方式
+      						selectOptions: ['Kia', 'Nissan', 'Toyota', 'Honda']//可选值
+			            },//可以是空对象
+			            {
+			            	data: 'flag',
+			            	renderer: (instance, td, row, col, prop, value, cellProperties)=>{
+			                //渲染列的方法
+			            		td.innerHTML = value;
+			           		},//自定义渲染（自带html渲染）renderer:"html"
+			                compareFunctionFactory: function compareFunctionFactory() {
+			              		return function comparator() {
+			              			return 0; //第一列不排序
+			              		}
+			              	},
+							readOnly:true	//列只读
+			            },
+			            {
+							data: 'currencyCode',
+							type: 'text',
+							type: 'dropdown',			//下拉选项
+							source: ['yellow', 'red', 'orange', 'green', 'blue', 'gray', 'black', 'white']//可选值
+			            },
+			            {
+			            	data: 'currency',
+			            	type: 'text',
+			            	validator:my.currencyValidator,
+			            	source: ['BMW', 'Chrysler', 'Nissan', 'Suzuki', 'Toyota', 'Volvo'],
+							allowInvalid: true,			//是否允许非法值,默认允许
+							strict: true
+			            },
+			            {
+							data: 'level',
+							type: 'numeric',
+							numericFormat: {
+								pattern: '0.0000'
+							},
+							validator:'my.levelValidator',
+							numericFormat: {
+								pattern: '0,0.0000$',//格式
+								culture: 'zh-CN'	//钱的标识
+							},
+							allowEmpty: false
+			            },
+			            {
+							data: 'units',
+							type: 'handsontable',	//嵌套handsontable
+							handsontable: {			//嵌套handsontable皮质
+								colHeaders: ['Marque', 'Country', 'Parent company'],
+								autoColumnSize: true,
+								data:[
+									{name: 'BMW', country: 'Germany', owner: 'Bayerische Motoren Werke AG'},
+									{name: 'Chrysler', country: 'USA', owner: 'Chrysler Group LLC'},
+									{name: 'Nissan', country: 'Japan', owner: 'Nissan Motor Company Ltd'},
+									{name: 'Suzuki', country: 'Japan', owner: 'Suzuki Motor Corporation'},
+									{name: 'Toyota', country: 'Japan', owner: 'Toyota Motor Corporation'},
+									{name: 'Volvo', country: 'Sweden', owner: 'Zhejiang Geely Holding Group'}
+								],
+								getValue:function(){		//显示选择的值
+									var selection = this.getSelectedLast();
+									return this.getSourceDataAtRow(selection[0]).name;
+								}
+							}
+							//type: 'password',//密码类型
+							//editor: false	//不允许编辑（cell没有加readOnly的css）
+							
+			            },
+			            {
+							data: 'asOf',
+							type: 'date',
+							dateFormat: 'MM/DD/YYYY'
+			            },
+			            {
+							data: 'onedChng',
+							type: 'numeric',
+							numericFormat: {
+								pattern: '0.00%'
+							}
+			            }
 					],//列的定义（对象类型,无法插入新的列）
-          colWidths: 100,//列宽度
-          width: '100%',// ()=>{return 500;} / 500  表宽度
-          height: 320,//()=>{return 500;} / '100%'  表高度
-          rowHeights: 23,//行高度
-          rowHeaders: true,//行头部（使用组件自带）
-          colHeaders: true//列头部（使用组件自带）
-          /*colHeaders:[
-						'ID',
-					    'Country',
-					    'Code',
-					    'Currency',
-					    'Level',
-					    'Units',
-					    'Date',
-					    'Change',
-					    'Phone',
-					    'Drinks',
-					    'JPDN',
-					    'Pepsi',
-					    'DyDo'
-					],*///列头部自定义
-          fixedRowsTop:2,//固定头部2行
-          fixedRowsBottom:2,//固定底部2行
-          fixedColumnsLeft:2,//固定左侧2列
-          manualColumnResize:true,//多列的调整（宽度）
-          manualRowResize: true//行调整（如果有设定值,高度不小于）
-          manualColumnMove: true,//多列的拖动
-          manualRowMove: true,//多行拖动
-          headerTooltips:true,//鼠标划过头部时的提示文字
-          stretchH:'all',//所有列宽小于表宽时,填充满整个表 all（所有列填充）/last（最后一列）/none(不填充)
-          
-          
-					//headerTooltips:true,
-					//fixedColumnsLeft: 1,
-					//width:1000,
-					rowHeaders: true,//行头部
-					height: 320,//表高度 有高度和宽度滚轮才显示
+					colWidths: 100,//列宽度
+					width: '100%',// ()=>{return 500;} / 500  表宽度
+					height: 320,//()=>{return 500;} / '100%'  表高度
 					rowHeights: 23,//行高度
-					manualColumnResize: true,//列宽设置
+					rowHeaders: true,//行头部（使用组件自带）
+					colHeaders: true//列头部（使用组件自带）
+					/*colHeaders:[
+								'ID',
+							    'Country',
+							    'Code',
+							    'Currency',
+							    'Level',
+							    'Units',
+							    'Date',
+							    'Change',
+							    'Phone',
+							    'Drinks',
+							    'JPDN',
+							    'Pepsi',
+							    'DyDo'
+							],*///列头部自定义
+					fixedRowsTop:2,			//固定头部2行
+					fixedRowsBottom:2,		//固定底部2行
+					fixedColumnsLeft:2,		//固定左侧2列
+					manualColumnResize:true,//多列的调整（宽度）
+					manualRowResize: true,	//行调整（如果有设定值,高度不小于）
+					manualColumnMove: true,	//多列的拖动
+					manualRowMove: true,	//多行拖动
+					headerTooltips:true,	//鼠标划过头部时的提示文字
+					stretchH:'all',			//所有列宽小于表宽时,填充满整个表 all（所有列填充）/last（最后一列）/none(不填充)
+					contextMenu: true,		//右键菜单（使用默认）
+					/*contextMenu:[
+						//自定义右键菜单，可选值：https://handsontable.com/docs/7.1.0/demo-dropdown-menu.html
+					],*/
+          			manualColumnFreeze:true,//使用右键菜单固定列
+          			hiddenRows:{
+          				rows: [3, 5, 9],	//隐藏的行index
+          				indicators: true	//是否显示隐藏标识
+          			},						//隐藏行（contextMenu可以使用右键菜单隐藏行）
+          			hiddenColumns:{
+          				columns: [3, 5, 9],	//隐藏的列index
+          				indicators: true	//是否显示隐藏标标识
+          			},						//隐藏列（contextMenu可以使用右键菜单隐藏列）
+          			trimRows: [1, 2, 5],	//除去指定的行
+          			bindRowsWithHeaders: 'strict',//绑定行头部（在行移动时行头不变）
+          			nestedHeaders:[
+          				['A', {label: 'B', colspan: 8}, 'C'],
+          				['D', {label: 'E', colspan: 4}, {label: 'F', colspan: 4}, 'G'],
+          				['H', {label: 'I', colspan: 2}, {label: 'J', colspan: 2}, {label: 'K', colspan: 2}, {label: 'L', colspan: 2}, 'M'],
+          				['N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W']
+          			],						//多列头部合并
+          			collapsibleColumns:[
+          				{row: -4, col: 1, collapsible: true},//row的第一行时表的第一行，不表头，往上是负数
+          				{row: -3, col: 1, collapsible: true},
+          				{row: -2, col: 1, collapsible: true},
+          				{row: -2, col: 3, collapsible: true}
+          			],						//多列合并头部显示合并展开按钮
+          			dropdownMenu:true,		//表头部列的下拉菜单
+          			/*dropdownMenu:[
+          				//自定义下拉菜单，可选值：https://handsontable.com/docs/7.1.0/demo-dropdown-menu.html
+          			],*/
+          			columnSorting: true,		//是否开启列的排序
+          			/*columnSorting:{
+          										//自定义列排序配置
+          				sortEmptyCells:true,	//空的cell是否排序
+          				initialConfig:{			//初始化的排序配置
+          					column:2,			//排序的列的index
+          					sortOrder:'asc'		//排序方式 asc/desc
+          				}
+          			},*/
+          			//multiColumnSorting:true,	//是否开启多列排序，不可与columnSorting同时开启（按下）
+          			/*multiColumnSorting:{
+          										//自定义多列排序配置
+						sortEmptyCells:true,	//空的cell是否排序
+						initialConfig:[			//初始化的排序配置
+							{
+								column: 0,		//排序的列的index
+								sortOrder: 'asc'//排序方式 asc/desc
+							},
+							...
+						]
+          			},*/
+          			search: true,		//是否开启搜索 demo : https://handsontable.com/docs/7.1.0/demo-searching.html
+          			filters: true,		//是否开启过滤 在下拉菜单中
+          			/*columnSummary:[
+						//列合计
+						{
+							sourceColumn: 2,		//统计的列
+							destinationRow: 4,		//显示结果的目标行			
+							destinationColumn: 1,	//显示结果的目标列	
+							reversedRowCoords: true,//显示的cell坐标固定在底部
+							type: 'min',			//统计方式max/min/count(合计不为空的值)/average/custom
+							forceNumeric: true,		//是否开启严格的数字模式
+							customFunction:function(endpoint){
+								//type为custom时，自定义统计方式 endpoint是对象
+							},
+							suppressDataTypeErrors: false,	//统计不为数字的cell时，丢出错误
+							roundFloat:2 					//保留小数点
+					    },
+					    ...
+					],*/
+					readOnly:true,	//开启只读
+					fillHandle:true,//填充数据
+					/*fillHandle:{
+						//自定义填充数据
+						direction: 'vertical',	//填充方向 true/false/horizontal/vertical
+						autoInsertRow: true		//拉到底部时自动插入行
+					},*/
+					mergeCells:[
+						{row: 1, col: 1, rowspan: 3, colspan: 3},
+						{row: 3, col: 4, rowspan: 2, colspan: 2},
+						{row: 5, col: 6, rowspan: 3, colspan: 3,className:"htLeft htBottom"}
+					],							//合并cell
+					className: "htCenter",		/*cell中文字对齐方式
+													Horizontal:htLeft, htCenter, htRight, htJustify
+													Vertical: htTop, htMiddle, htBottom*/
+					
 					customBorders:true,//设置边框
-					//manualColumnFreeze: true,//是否多列固定
+					comments: true,//cell注释(和cell一起使用)
+					cell:[
+						{row: 1, col: 1, comment: {value: 'Some comment'}},//第2行第2列的cell添加注释
+						{row: 2, col: 2, comment: {value: 'More comments'}}
+					],					
+
 					
-					
-					
-					/*hiddenColumns: {
-						columns:[0,1,2],//隐藏的列index (0是第一列)
-						indicators:false//是否显示隐藏标志
-					},*/
-					/*hiddenRows:{
-						rows: [3, 5, 9],//隐藏的行index (0是第一行)
-						indicators:true//是否显示隐藏标志
-					},//隐藏行*/
-					hiddenColumns: {
-						columns:[],//隐藏的列index (0是第一列)
-						indicators:false//是否显示隐藏标志
-					},//隐藏列
-					/*//trimRows: [0,1,2,3,4,5,6],//功能未测试
-					bindRowsWithHeaders:'strict',//绑定行的头部（移动行时头部不变）
-					nestedHeaders:[
-						['A', {label: 'B', colspan: 8}, 'C'],
-						['D', {label: 'E', colspan: 4}, {label: 'F', colspan: 4}, 'G'],
-						['H', {label: 'I', colspan: 2}, {label: 'J', colspan: 2}, {label: 'K', colspan: 2}, {label: 'L', colspan: 2}, 'M'],
-						['N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W']
-					],//头部多列合并
-					collapsibleColumns: [
-					    {row: -4, col: 1, collapsible: true},
-					    {row: -3, col: 1, collapsible: true},
-					    {row: -2, col: 1, collapsible: true},
-					    {row: -2, col: 3, collapsible: true}
-					],//使用nestedHeaders时，有按钮显示或者隐藏子头部（必须定义hiddenColumns）*/
-					dropdownMenu: true,//头部下拉菜单(使用默认菜单)
-					/*dropdownMenu:[
-						'remove_col',
-						'---------',
-						'make_read_only',
-						'---------',
-						'alignment'
-					],//自定义头部下拉菜单*/
-					columnSorting: {
-						indicator: true
-					},//排序
-					language: "zh-CN",//语言
-					//stretchH:'last',//垂直方向的滚轮
-					//autoWrapRow: true,
-					//maxRows: 22,//最大行数
-					manualRowResize: true,//设置行高
-					//rowHeaders: true,//使用插件行头
-					//colHeaders:true,//使用插件列头
-					
-					manualRowMove: true,//行移动
-					manualColumnMove: true,//列移动
-					contextMenu: ['copy', 'cut'],//右键菜单
-					filters: true,//下拉菜单中的过滤
-					headerTooltips:{
-						rows: true,
-						columns: true,
-						onlyTrimmed: false
-					},//鼠标防止在头部时的提示信息
-					/*autoColumnSize: {
-						samplingRatio: 23
-					},*/
-					//allowInsertColumn:true,
-					search: true,
-					/*search:{
-						searchResultClass:'customClass',//结果cell添加的class
-						queryMethod:function(queryStr, value) {
-							//console.dir(value)
-						},
-						callback: function(instance, row, column, value, result) {
-							console.dir(row)
-						}
-					},*/
-					autoWrapCol:true,//按tab键可以从最后一列跳转至第一列
-					autoWrapRow:true,//按tab键可以从最后一行跳转至第一行
-					bindRowsWithHeaders:true,//行移动时，行头保持不变
-					//observeChanges: true,
-					//dragToScroll:true,
+
 					outsideClickDeselects: (event)=>{
 						console.dir(1)
 						this.elTabSettings.show = false;
@@ -584,20 +357,9 @@
 			}
 		},
 		methods:{
-			flagRenderer(instance, td, row, col, prop, value, cellProperties){
-				var currencyCode = value;
-				while (td.firstChild) {
-				    td.removeChild(td.firstChild);
-				}
-				if (currencyCodes.indexOf(currencyCode) > -1) {
-					var flagElement = document.createElement('DIV');
-					flagElement.className = 'flag ' + currencyCode.toLowerCase();
-					td.appendChild(flagElement);
-				}else{
-					var textNode = document.createTextNode(value === null ? '' : value);
-					td.appendChild(textNode);
-				}
-			},
+			/**
+			 * [exportCsv 导出csv文件]
+			 */
 			exportCsv(){
 				var downLoad = this.$refs.testHot.hotInstance.getPlugin('exportFile');
 				downLoad.downloadFile('csv', {
@@ -727,14 +489,27 @@
 				}
 				//console.dir(this.elTabSettings.data);
 				this.elTabSettings.show = true
+			},
+			customValidator(){
+
 			}
 		},
 		created(){
-			for (var i = 1 ; i < 100; i++) {
-				this.dataArray.push(
-					[24,'PHP','PHP','Philippine Peso',46.3108,'PHP / USD','08/19/2019', 0.0012, 0.0012, 0.0012,'PHP','PHP','Philippine Peso']
-						);
-			}
+			(function(Handsontable){
+				function levelValidator(query, callback) {
+			    	if(query < 1){
+			    		callback(false);
+			    	}else{
+			    		callback(true);
+			    	}
+			  	};
+			  	function customRender(instance, td, row, col, prop, value, cellProperties){
+			  		//自定义渲染代码
+			  		Handsontable.renderers.BaseRenderer.apply(this, arguments);
+			  	};
+				Handsontable.validators.registerValidator('my.levelValidator', levelValidator);//自定义验证器（修改以后出发）
+				Handsontable.renderers.registerRenderer('my.customRender', customRender);//注册自定义渲染
+			})(Handsontable)
 		},
 		components:{
 			HotTable
@@ -744,5 +519,4 @@
 </script>
 <style>
 	@import "../../../node_modules/handsontable/dist/handsontable.full.css";
-	
 </style>
