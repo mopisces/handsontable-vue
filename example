@@ -89,7 +89,7 @@
 			            {
 							data: 'units',
 							type: 'handsontable',	//嵌套handsontable
-							handsontable: {			//嵌套handsontable皮质
+							handsontable: {			//嵌套handsontable配置
 								colHeaders: ['Marque', 'Country', 'Parent company'],
 								autoColumnSize: true,
 								data:[
