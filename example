@@ -1,0 +1,748 @@
+<template>
+	<div  class="table">
+			<div class="handle-box">
+        <button type="button" @click="hiddenCol('Country')">Country</button>
+        <button type="button" @click="hiddenCol('Code')">Code</button>
+        <button type="button" @click="hiddenCol('Currency')">Currency</button>
+			</div>
+			<hot-table :data="data" :settings="hotSettings" licenseKey="non-commercial-and-evaluation" ref="testHot" :root="root"></hot-table>
+      <button type="button" @click="exportCsv()">导出文件（CSV格式）</button>
+	</div>
+</template>
+<script>
+	import { HotTable } from '@handsontable/vue';//引入handsontable组件
+	import 'handsontable/languages/zh-CN';//引入语言类型
+	export default {
+		data() {
+			return {
+				root: 'test-hot',
+				data:[
+						{
+							id: 0,
+							flag: 'EUR',
+							currencyCode: 'EUR',
+							currency: 'Euro',
+							level: 0.9033,
+							units: 'EUR / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0026,
+							data:'07/11/2019',
+							stars:5,
+							range:6,
+							phone:'huawei'
+						},
+						{
+							id: 2,
+							flag: 'JPY',
+							currencyCode: 'JPY',
+							currency: 'Japanese Yen',
+							level: 124.3870,
+							units: 'JPY / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0001,
+							data:'07/11/2019',
+							stars:2,
+							range:6,
+							phone:'iphone'
+						},
+						{
+							id: 3,
+							flag: 'GBP',
+							currencyCode: 'GBP',
+							currency: 'Pound Sterling',
+							level: 0.6396,
+							units: 'GBP / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.00,
+							stars:2,
+							range:2,
+							phone:'mi'
+						},
+						{
+							id: 4,
+							flag: 'CHF',
+							currencyCode: 'CHF',
+							currency: 'Swiss Franc',
+							level: 0.9775,
+							units: 'CHF / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0008,
+							stars:2,
+							range:2,
+							phone:'mi'
+						},
+						{
+							id: 5,
+							flag: 'CAD',
+							currencyCode: 'CAD',
+							currency: 'Canadian Dollar',
+							level: 1.3097,
+							units: 'CAD / USD',
+							asOf: '08/19/2019',
+							onedChng: -0.0005,
+							stars:2,
+							range:2,
+							phone:'mi'
+						},
+						{
+							id: 6,
+							flag: 'AUD',
+							currencyCode: 'AUD',
+							currency: 'Australian Dollar',
+							level: 1.3589,
+							units: 'AUD / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0020,
+							stars:2,
+							range:6,
+							phone:'iphone'
+						},
+						{
+							id: 7,
+							flag: 'NZD',
+							currencyCode: 'NZD',
+							currency: 'New Zealand Dollar',
+							level: 1.5218,
+							units: 'NZD / USD',
+							asOf: '08/19/2019',
+							onedChng: -0.0036,
+							stars:2,
+							range:6,
+							phone:'iphone'
+						},
+						{
+							id: 8,
+							flag: 'SEK',
+							currencyCode: 'SEK',
+							currency: 'Swedish Krona',
+							level: 8.5280,
+							units: 'SEK / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0016,
+							stars:2,
+							range:6,
+							phone:'iphone'
+						},
+						{
+							id: 9,
+							flag: 'NOK',
+							currencyCode: 'NOK',
+							currency: 'Norwegian Krone',
+							level: 8.2433,
+							units: 'NOK / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0008,
+							stars:8,
+							range:16,
+							phone:'all'
+						},
+						{
+							id: 10,
+							flag: 'BRL',
+							currencyCode: 'BRL',
+							currency: 'Brazilian Real',
+							level: 3.4806,
+							units: 'BRL / USD',
+							asOf: '08/19/2019',
+							onedChng: -0.0009,
+							stars:8,
+							range:16,
+							phone:'all'
+						},
+						{
+							id: 11,
+							flag: 'CNY',
+							currencyCode: 'CNY',
+							currency: 'Chinese Yuan',
+							level: 6.3961,
+							units: 'CNY / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0004,
+							stars:8,
+							range:16,
+							phone:'all'
+						},
+						{
+							id: 12,
+							flag: 'RUB',
+							currencyCode: 'RUB',
+							currency: 'Russian Rouble',
+							level: 65.5980,
+							units: 'RUB / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0059,
+							stars:5,
+							range:6,
+							phone:'huawei'
+						},
+						{
+							id: 13,
+							flag: 'INR',
+							currencyCode: 'INR',
+							currency: 'Indian Rupee',
+							level: 65.3724,
+							units: 'INR / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0026,
+							stars:5,
+							range:6,
+							phone:'huawei'
+						},
+						{
+							id: 14,
+							flag: 'TRY',
+							currencyCode: 'TRY',
+							currency: 'New Turkish Lira',
+							level: 2.8689,
+							units: 'TRY / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0092,
+							onedChng: 0.0016,
+							stars:2,
+							range:6,
+							phone:'iphone'
+						},
+						{
+							id: 15,
+							flag: 'THB',
+							currencyCode: 'THB',
+							currency: 'Thai Baht',
+							level: 35.5029,
+							units: 'THB / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0044,
+							stars:2,
+							range:2,
+							phone:'mi'
+
+						},
+						{
+							id: 16,
+							flag: 'IDR',
+							currencyCode: 'IDR',
+							currency: 'Indonesian Rupiah',
+							level: 13.83,
+							units: 'IDR / USD',
+							asOf: '08/19/2019',
+							onedChng: -0.0009,
+							stars:2,
+							range:6,
+							phone:'iphone'
+						},
+						{
+							id: 17,
+							flag: 'MYR',
+							currencyCode: 'MYR',
+							currency: 'Malaysian Ringgit',
+							level: 4.0949,
+							units: 'MYR / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0010,
+							stars:2,
+							range:2,
+							phone:'mi'
+
+						},
+						{
+							id: 18,
+							flag: 'MXN',
+							currencyCode: 'MXN',
+							currency: 'Mexican New Peso',
+							level: 16.4309,
+							units: 'MXN / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0017,
+							stars:8,
+							range:16,
+							phone:'all'
+						},
+						{
+							id: 19,
+							flag: 'ARS',
+							currencyCode: 'ARS',
+							currency: 'Argentinian Peso',
+							level: 9.2534,
+							units: 'ARS / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0011,
+							stars:2,
+							range:6,
+							phone:'iphone'
+						},
+						{
+							id: 20,
+							flag: 'DKK',
+							currencyCode: 'DKK',
+							currency: 'Danish Krone',
+							level: 6.7417,
+							units: 'DKK / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0025,
+							stars:2,
+							range:6,
+							phone:'iphone'
+						},
+						{
+							id: 21,
+							flag: 'ILS',
+							currencyCode: 'ILS',
+							currency: 'Israeli New Sheqel',
+							level: 3.8262,
+							units: 'ILS / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0084,
+							stars:8,
+							range:16,
+							phone:'all'
+						},
+						{
+							id: 22,
+							flag: 'PHP',
+							currencyCode: 'PHP',
+							currency: 'Philippine Peso',
+							level: 46.3108,
+							units: 'PHP / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0012,
+							stars:2,
+							range:6,
+							phone:'iphone'
+						}
+					],
+				dataArray:[
+					[22,'PHP','PHP','Philippine Peso',46.3108,'PHP / USD','08/19/2019', 0.0012, 0.00121, 0.0012,'PHP','PHP','Philippine Peso'],
+					[21,'PHP','PHP','Philippine Peso',46.3108,'PHP / USD','08/19/2019', 0.0012, 0.0012, 0.0012,'PHP','PHP','Philippine Peso'],
+					[20,'PHP','PHP','Philippine Peso',46.3108,'PHP / USD','08/19/2019', 0.0012, 0.0012, 0.0012,'PHP','PHP','Philippine Peso'],
+					[23,'PHP','PHP','Philippine Peso',46.3108,'PHP / USD','08/19/2019', 0.0012, 0.0012, 0.0012,'PHP','PHP','Philippine Peso'],
+					[24,'PHP','PHP','Philippine Peso',46.3108,'PHP / USD','08/19/2019', 0.0012, 0.0012, 0.0012,'PHP','PHP','Philippine Peso']
+				],//数组型data，可以插入行
+				hotSettings :{
+					columns:[
+            {},//可以是空对象
+            {
+              data: 'flag',
+              renderer: (instance, td, row, col, prop, value, cellProperties)=>{
+                //渲染列的方法
+                td.innerHTML = value;
+              }
+            },
+            {
+              data: 'currencyCode',
+              type: 'text'
+            },
+            {
+              data: 'currency',
+              type: 'text'
+            },
+            {
+              data: 'level',
+              type: 'numeric',
+              numericFormat: {
+                pattern: '0.0000'
+              }
+            },
+            {
+              data: 'units',
+              type: 'text'
+            },
+            {
+              data: 'asOf',
+              type: 'date',
+              dateFormat: 'MM/DD/YYYY'
+            },
+            {
+              data: 'onedChng',
+              type: 'numeric',
+              numericFormat: {
+                pattern: '0.00%'
+              }
+            }
+					],//列的定义（对象类型,无法插入新的列）
+          colWidths: 100,//列宽度
+          width: '100%',// ()=>{return 500;} / 500  表宽度
+          height: 320,//()=>{return 500;} / '100%'  表高度
+          rowHeights: 23,//行高度
+          rowHeaders: true,//行头部（使用组件自带）
+          colHeaders: true//列头部（使用组件自带）
+          /*colHeaders:[
+						'ID',
+					    'Country',
+					    'Code',
+					    'Currency',
+					    'Level',
+					    'Units',
+					    'Date',
+					    'Change',
+					    'Phone',
+					    'Drinks',
+					    'JPDN',
+					    'Pepsi',
+					    'DyDo'
+					],*///列头部自定义
+          fixedRowsTop:2,//固定头部2行
+          fixedRowsBottom:2,//固定底部2行
+          fixedColumnsLeft:2,//固定左侧2列
+          manualColumnResize:true,//多列的调整（宽度）
+          manualRowResize: true//行调整（如果有设定值,高度不小于）
+          manualColumnMove: true,//多列的拖动
+          manualRowMove: true,//多行拖动
+          headerTooltips:true,//鼠标划过头部时的提示文字
+          stretchH:'all',//所有列宽小于表宽时,填充满整个表 all（所有列填充）/last（最后一列）/none(不填充)
+          
+          
+					//headerTooltips:true,
+					//fixedColumnsLeft: 1,
+					//width:1000,
+					rowHeaders: true,//行头部
+					height: 320,//表高度 有高度和宽度滚轮才显示
+					rowHeights: 23,//行高度
+					manualColumnResize: true,//列宽设置
+					customBorders:true,//设置边框
+					//manualColumnFreeze: true,//是否多列固定
+					
+					
+					
+					/*hiddenColumns: {
+						columns:[0,1,2],//隐藏的列index (0是第一列)
+						indicators:false//是否显示隐藏标志
+					},*/
+					/*hiddenRows:{
+						rows: [3, 5, 9],//隐藏的行index (0是第一行)
+						indicators:true//是否显示隐藏标志
+					},//隐藏行*/
+					hiddenColumns: {
+						columns:[],//隐藏的列index (0是第一列)
+						indicators:false//是否显示隐藏标志
+					},//隐藏列
+					/*//trimRows: [0,1,2,3,4,5,6],//功能未测试
+					bindRowsWithHeaders:'strict',//绑定行的头部（移动行时头部不变）
+					nestedHeaders:[
+						['A', {label: 'B', colspan: 8}, 'C'],
+						['D', {label: 'E', colspan: 4}, {label: 'F', colspan: 4}, 'G'],
+						['H', {label: 'I', colspan: 2}, {label: 'J', colspan: 2}, {label: 'K', colspan: 2}, {label: 'L', colspan: 2}, 'M'],
+						['N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W']
+					],//头部多列合并
+					collapsibleColumns: [
+					    {row: -4, col: 1, collapsible: true},
+					    {row: -3, col: 1, collapsible: true},
+					    {row: -2, col: 1, collapsible: true},
+					    {row: -2, col: 3, collapsible: true}
+					],//使用nestedHeaders时，有按钮显示或者隐藏子头部（必须定义hiddenColumns）*/
+					dropdownMenu: true,//头部下拉菜单(使用默认菜单)
+					/*dropdownMenu:[
+						'remove_col',
+						'---------',
+						'make_read_only',
+						'---------',
+						'alignment'
+					],//自定义头部下拉菜单*/
+					columnSorting: {
+						indicator: true
+					},//排序
+					language: "zh-CN",//语言
+					//stretchH:'last',//垂直方向的滚轮
+					//autoWrapRow: true,
+					//maxRows: 22,//最大行数
+					manualRowResize: true,//设置行高
+					//rowHeaders: true,//使用插件行头
+					//colHeaders:true,//使用插件列头
+					
+					manualRowMove: true,//行移动
+					manualColumnMove: true,//列移动
+					contextMenu: ['copy', 'cut'],//右键菜单
+					filters: true,//下拉菜单中的过滤
+					headerTooltips:{
+						rows: true,
+						columns: true,
+						onlyTrimmed: false
+					},//鼠标防止在头部时的提示信息
+					/*autoColumnSize: {
+						samplingRatio: 23
+					},*/
+					//allowInsertColumn:true,
+					search: true,
+					/*search:{
+						searchResultClass:'customClass',//结果cell添加的class
+						queryMethod:function(queryStr, value) {
+							//console.dir(value)
+						},
+						callback: function(instance, row, column, value, result) {
+							console.dir(row)
+						}
+					},*/
+					autoWrapCol:true,//按tab键可以从最后一列跳转至第一列
+					autoWrapRow:true,//按tab键可以从最后一行跳转至第一行
+					bindRowsWithHeaders:true,//行移动时，行头保持不变
+					//observeChanges: true,
+					//dragToScroll:true,
+					outsideClickDeselects: (event)=>{
+						console.dir(1)
+						this.elTabSettings.show = false;
+						this.elTabSettings.data = [];
+						this.elTabSettings.items = [];
+						return false;
+					},//取消选定
+					beforeRowMove:(rows,target)=>{
+						//console.dir(rows)
+						//console.dir(rows)
+					},
+					afterRowMove:(rows,target)=>{
+						console.dir('afterRowMove')
+						console.dir(rows)
+						console.dir('target')
+						console.dir(target)
+					},
+					afterGetColHeader:(col, TH)=>{
+						if (col >= 0 && TH.childElementCount < 2) {
+						    TH.appendChild(this.getInitializedElements(col));
+						}
+					},
+					afterGetRowHeader:(row,TH)=>{
+						//console.dir(row)
+					},
+					beforeOnCellMouseDown: function(event, coords){
+						if (coords.row === -1 && event.realTarget.nodeName === 'INPUT') {
+							event.stopImmediatePropagation();
+							this.deselectCell();
+						}
+					},
+					beforeCreateCol:(index,amount,source)=>{
+						//this.hotSettings.colHeaders.splice(index,0,'kkkkk');
+					},
+					afterCreateCol:(index,amount,source)=>{
+						//this.hotSettings.colHeaders.pop();
+						//this.hotSettings.colHeaders.push('newCol');
+						//console.dir(index);
+						//console.dir(amount);
+						//console.dir(source);
+						//console.dir(index)
+						//console.dir(amount)
+						//this.hotSettings.colHeaders[index];
+						//console.dir(this.hotSettings.colHeaders[9]);
+					},
+					modifyRowData:(row)=>{
+						//console.dir(row);
+					},
+					modifyData:(row,column,valueHolder,ioMode)=>{
+						//console.dir(valueHolder);
+					},
+					afterUpdateSettings:(newSettings)=>{
+						//newSettings.colHeaders[10] = 'sssss'
+					},
+					afterHideColumns:(currentHideConfig,destinationHideConfig,actionPossible,stateChanged)=>{
+						//console.dir(actionPossible)
+					},
+					afterSelection:(row, column, row2, column2, preventScrolling, selectionLayerLevel)=>{
+						//console.dir('afterSelection')
+						//console.dir(row)
+						/*console.dir(column)
+						console.dir(row2)
+						console.dir(column2)
+						console.dir(preventScrolling)
+						console.dir(selectionLayerLevel)
+						preventScrolling.value = true;*/
+					},
+					afterSelectionEnd:(row,column,row2,column2,selectionLayerLevel)=>{
+						//console.dir(row);
+						//console.dir(row2);
+						//console.dir(column);
+						//console.dir(column2);
+						//console.dir(this.$refs.testHot.hotInstance.getColHeader(column2));
+						
+						this.getStepData(row,row2,column,column2);
+						//console.dir(this.$refs.testHot.hotInstance.getDataAtRow(row))
+					},
+					afterSelectionEndByProp:(row,prop,row2,prop2,selectionLayerLevel)=>{
+						//console.dir(row)
+						//console.dir(row2)
+					},
+					/*modifyColHeader:(column)=>{
+						console.dir('column');
+					}*///绑定的钩子函数
+					/*multiColumnSorting: {
+						indicator: true
+					}*/
+					/*columnSummary:[
+						{
+							ranges: [
+								[0],[10],[11,12]//设置需要计算的行
+							],
+							sourceColumn: 2,
+							destinationRow: 0,//显示结果的行索引
+							destinationColumn: 0,//显示结果的列索引
+							reversedRowCoords: true,//行坐标反转，用来统计底部
+							type: 'sum',//统计方式
+							forceNumeric: true//严格的数字模式
+						}
+					]//统计*/
+					/*comments: true,//注释开启
+					cell: [
+						{row: 1, col: 1, comment: {value: 'Some comment'}},
+						{row: 2, col: 2, comment: {value: 'More comments'}}
+					]//设置特定的cell的注释*/
+				}
+			}
+		},
+		methods:{
+			flagRenderer(instance, td, row, col, prop, value, cellProperties){
+				var currencyCode = value;
+				while (td.firstChild) {
+				    td.removeChild(td.firstChild);
+				}
+				if (currencyCodes.indexOf(currencyCode) > -1) {
+					var flagElement = document.createElement('DIV');
+					flagElement.className = 'flag ' + currencyCode.toLowerCase();
+					td.appendChild(flagElement);
+				}else{
+					var textNode = document.createTextNode(value === null ? '' : value);
+					td.appendChild(textNode);
+				}
+			},
+			exportCsv(){
+				var downLoad = this.$refs.testHot.hotInstance.getPlugin('exportFile');
+				downLoad.downloadFile('csv', {
+					bom: false,//编码方式
+					columnDelimiter: ',',//列的分隔符
+					columnHeaders: true,//是否导出列头
+					exportHiddenColumns: true,//是否导出隐藏的列
+					exportHiddenRows: true,//是否导出隐藏的行
+					fileExtension: 'csv',//设置文件的后缀名
+					filename: 'Handsontable-CSV-file_[YYYY]-[MM]-[DD]',//设置文件的名称
+					mimeType: 'text/csv',//设置描述消息内容类型的因特网标准
+					rowDelimiter: '\r\n',//设置行分隔符
+					rowHeaders: true//是否导出行头
+				});
+			},
+			newCol(param){
+				/*this.data.push({
+							id: 0,
+							flag: 'EUR',
+							currencyCode: 'EUR',
+							currency: 'Euro',
+							level: 0.9033,
+							units: 'EUR / USD',
+							asOf: '08/19/2019',
+							onedChng: 0.0026,
+							data:'07/11/2019',
+							stars:5,
+							range:6,
+							phone:'huawei'
+						});*/
+				//this.hotSettings.hiddenColumns.columns=[0,1]
+				//console.dir(param)
+				/*let len = this.hotSettings.colHeaders.length;
+				this.$refs.testHot.hotInstance.alter('insert_col',len + 1,1);
+				var headers = this.hotSettings.colHeaders;
+				headers[len] = param;
+				for (var i = this.dataArray.length - 1; i >= 0; i--) {
+					this.dataArray[i].hello = i
+				}
+				this.$refs.testHot.hotInstance.updateSettings({
+					colHeaders:headers
+				});//data是Array时，创建新列*/
+				//console.dir(this.$refs.testHot.hotInstance.getColHeader());
+				console.dir(this.$refs.testHot.hotInstance)
+				var search = this.$refs.testHot.hotInstance.getPlugin('hiddenColumns');
+				var hiddenColumns = this.hotSettings.hiddenColumns.columns
+
+				let headers = this.$refs.testHot.hotInstance.getColHeader();
+				for (var i = headers.length - 1; i >= 0; i--) {
+					if(headers[i] == param){
+						let index = this.hotSettings.hiddenColumns.columns.indexOf(i)
+						if(  index > -1 ){
+							hiddenColumns.splice(index,1)
+						}else{
+							hiddenColumns.push(i)
+						}
+					}
+				}
+				this.$refs.testHot.hotInstance.updateSettings({
+					hiddenColumns: {
+						columns:hiddenColumns,//隐藏的列index (0是第一列)
+						indicators:false//是否显示隐藏标志
+					}
+				});
+				//console.dir()
+				//console.dir(this.$refs.testHot.hotInstance)
+				//this.$refs.testHot.hotInstance.scrollViewportTo(18,1);//滚动到指定位置
+				//console.dir(this.$refs.testHot.hotInstance.scrollViewportTo(18,1))
+				/*var search = this.$refs.testHot.hotInstance.getPlugin('search');
+				var queryResult = search.query('iphone');
+				console.log(queryResult);
+				this.$refs.testHot.hotInstance.render();//搜索*/
+				//console.dir(this.$refs.testHot)
+				/*var downLoad = this.$refs.testHot.hotInstance.getPlugin('exportFile');
+				downLoad.downloadFile('csv', {
+					bom: false,//编码方式
+					columnDelimiter: ',',//列的分隔符
+					columnHeaders: true,//是否导出列头
+					exportHiddenColumns: true,//是否导出隐藏的列
+					exportHiddenRows: true,//是否导出隐藏的行
+					fileExtension: 'csv',//设置文件的后缀名
+					filename: 'Handsontable-CSV-file_[YYYY]-[MM]-[DD]',//设置文件的名称
+					mimeType: 'text/csv',//设置描述消息内容类型的因特网标准
+					rowDelimiter: '\r\n',//设置行分隔符
+					rowHeaders: true//是否导出行头
+				})//导出Excel文件*/
+
+			},
+			getInitializedElements(colIndex){
+				var div = document.createElement('div');
+				var input = document.createElement('input');
+				div.className = 'filterHeader';
+				this.addEventListeners(input, colIndex);
+				div.appendChild(input);
+				return div;
+			},
+			addEventListeners (input, colIndex){
+				var self = this
+				input.addEventListener('keydown', function(event) {
+					self.searchInput(colIndex, event);
+				});
+			},
+			searchInput(colIndex, event){
+				var filtersPlugin  = this.$refs.testHot.hotInstance.getPlugin('filters');
+				filtersPlugin.removeConditions(colIndex);
+				filtersPlugin.addCondition(colIndex, 'begins_with', [event.target.value]);
+				filtersPlugin.filter();
+			},
+			getStepData(startRow,endRow,startCol,endCol){
+				if(startRow > endRow || startCol > endCol){
+					return false;
+				}
+				this.elTabSettings.items = [];
+				for (startCol; (endCol - startCol) >= 0; startCol++) {
+					let itemName = this.$refs.testHot.hotInstance.getColHeader(startCol);
+					this.elTabSettings.items.push({prop:itemName,label:itemName});
+				}
+				for ( startRow ; (endRow - startRow) >= 0; startRow++) {
+					let arr = this.$refs.testHot.hotInstance.getDataAtRow(startRow);
+					let obj = {};
+					for (var i = arr.length - 1; i >= 0; i--) {
+						let key = this.$refs.testHot.hotInstance.getColHeader(i);
+						obj[key] = arr[i];
+					}
+					//console.dir(obj)
+					this.elTabSettings.data.push(obj);
+				}
+				//console.dir(this.elTabSettings.data);
+				this.elTabSettings.show = true
+			}
+		},
+		created(){
+			for (var i = 1 ; i < 100; i++) {
+				this.dataArray.push(
+					[24,'PHP','PHP','Philippine Peso',46.3108,'PHP / USD','08/19/2019', 0.0012, 0.0012, 0.0012,'PHP','PHP','Philippine Peso']
+						);
+			}
+		},
+		components:{
+			HotTable
+		}
+	}
+
+</script>
+<style>
+	@import "../../../node_modules/handsontable/dist/handsontable.full.css";
+	
+</style>
