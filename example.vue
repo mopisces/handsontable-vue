@@ -279,11 +279,368 @@
 					],					
 					currentRowClassName:'currentRow',//当前行的className
 					currentColClassName: 'currentCol',//当前列的className
+					copyPaste:true,//开启复制
+					/*copyPaste:{
+						columnsLimit: 25,//一次允许复制的最大列数
+						rowsLimit: 50,//一次允许复制的最大行数
+						pasteMode: 'shift_down',
+					}//自定义复制插件*/
+
 					/*可以在配置中添加钩子*/
-					afterBeginEditing:(row,column)=>{
-						//添加逻辑
-						...
-					}
+					/**
+					 * [ NestedRows 插件添加子到嵌套表格后触发]
+					 * @param  {[object]} parent  [父对象]
+					 * @param  {[object|undefine]} element [被添加的子对象]
+					 * @param  {[object|undefine]} index   [被添加的子对象在父对象内部的索引]
+					 */
+					afterAddChild:(parent,element,index)=>{},
+					/**
+					 * [编辑被打开渲染后触发]
+					 * @param  {[type]} row    [被编辑cell的行索引]
+					 * @param  {[type]} column [被编辑cell的列索引]
+					 */
+					afterBeginEditing:(row,column)=>{},
+					/**
+					 * [新配置updateSettings()或者初始化后触发]
+					 */
+					afterCellMetaReset:()=>{},
+					/**
+					 * [修改数据时触发]
+					 * @param  {[array]} changes [包含被修改cell的二维数组]
+					 * @param  {[string]} source [触发的源,详细见https://handsontable.com/docs/7.1.0/tutorial-using-callbacks.html?_ga=2.134914929.1685050319.1562552020-1754995230.1562372214#page-source-definition]
+					 */
+					afterChange:(changes,source)=>{},
+					/**
+					 * [可见列移动后被触发(manualColumnMove设置为true)]
+					 * @param  {[array]} columns  [列被移动前的索引]
+					 * @param  {[number]} target  [列被移动后的索引]
+					 */
+					afterColumnMove:(columns,target)=>{},
+					/**
+					 * [列的宽度拉伸后触发(manualColumnResize设置为true)]
+					 * @param  {[number]}  currentColumn [被修改的改的列索引]
+					 * @param  {[number]}  newSize       [新的列宽]
+					 * @param  {Boolean}   isDoubleClick [双击的标识]
+					 */
+					afterColumnResize:(currentColumn,newSize,isDoubleClick)=>{},
+					/**
+					 * [列排序后触发( ColumnSorting 或者 MultiColumnSorting都能触发)]
+					 * @param  {[type]} currentSortConfig      [description]
+					 * @param  {[type]} destinationSortConfigs [description]
+					 */
+					afterColumnSort:(currentSortConfig,destinationSortConfigs)=>{},
+					/**
+					 * [右键菜单弹出或者设置右键菜单触发]
+					 * @param  {[array]} predefinedItems [包含提前定义的右键菜单对象的数组]
+					 */
+					afterContextMenuDefaultOptions:(predefinedItems)=>{},
+					/**
+					 * [右键菜单隐藏后触发]
+					 * @param  {[object]} context [Context Menu插件的实例]
+					 */
+					afterContextMenuHide:(context)=>{},
+					/**
+					 * [右键菜单显示后触发]
+					 * @param  {[object]} context [Context Menu插件的实例]
+					 */
+					afterContextMenuShow:(context)=>{},
+					/**
+					 * [表中数据被复制后触发]
+					 * @param  {[array]} data   	[被复制的值( array(array) )]
+					 * @param  {[array]} coords 	[被复制的区域坐标(array(object)) 包含起始坐标和结束坐标]
+					 */
+					afterCopy:(data,coords)=>{},
+					/**
+					 * [复制超过限制后触发]
+					 * @param  {[number]} selectedRows     [选择的行数]
+					 * @param  {[number]} selectedColumns  [选择的列数]
+					 * @param  {[number]} copyRowsLimit    [复制行的限制数]
+					 * @param  {[number]} copyColumnsLimit [复制列的限制数]
+					 */
+					afterCopyLimit:(selectedRows,selectedColumns,copyRowsLimit,copyColumnsLimit)=>{},
+					/**
+					 * [创建新列后触发]
+					 * @param  {[number]} index  [新插入的第一列的索引]
+					 * @param  {[number]} amount [新创建的列数]
+					 * @param  {[string]} source [触发的源]
+					 */
+					afterCreateCol:(index,amount,source)=>{},
+					/**
+					 * [创建新行后触发]
+					 * @param  {[type]} index  [新插入的第一行的索引]
+					 * @param  {[type]} amount [新创建的行数]
+					 * @param  {[type]} source [触发的源]
+					 */
+					afterCreateRow:(index,amount,source)=>{},
+					/**
+					 * [表中数据被剪切后触发]
+					 * @param  {[type]} data   [被剪切的值( array(array) )]
+					 * @param  {[type]} coords [被剪切的区域坐标(array(object)) 包含起始坐标和结束坐标]
+					 */
+					afterCut:(data,coords)=>{},
+					/**
+					 * [当前单元格不被选中后触发]
+					 */
+					afterDeselect:()=>{},
+					/**
+					 * [在销毁handsontable实例时触发]
+					 */
+					afterDestroy:()=>{},
+					/**
+					 * [使用NestedRow时,分离一个嵌套行后触发]
+					 * @param  {[object]} parent  [被分离对象的父对象]
+					 * @param  {[object]} element [被分离的对象]
+					 */
+					afterDetachChild:(parent,element)=>{}
+					/**
+					 * [keydown 后被触发]
+					 * @param  {[Event]} Event [原生的keydown事件]
+					 */
+					afterDocumentKeyDown:(Event)=>{},
+					/**
+					 * [下拉菜单被设置后触发]
+					 * @param  {[type]} predefinedItems [提前设置的下拉菜单]
+					 */
+					afterDropdownMenuDefaultOptions:(predefinedItems)=>{},
+					/**
+					 * [下拉菜单隐藏后触发]
+					 * @param  {[DropdownMenu]} instance [下拉菜单的实例]
+					 */
+					afterDropdownMenuHide:(instance)=>{},
+					/**
+					 * [下拉菜单显示后触发]
+					 * @param  {[DropdownMenu]} dropdownMenu [下拉菜单的实例]
+					 */
+					afterDropdownMenuShow:(dropdownMenu)=>{},
+					/**
+					 * [在应用过滤插件后触发]
+					 * @param  {[array]} conditionsStack [包含已添加的条件对象的数组]
+					 */
+					afterFilter:(conditionsStack)=>{},
+					/**
+					 * [获取单元格设置后触发]
+					 * @param  {[number]} row            [行索引]
+					 * @param  {[number]} column         [列索引]
+					 * @param  {[object]} cellProperties [cell properties]
+					 */
+					afterGetCellMeta:(row,column,cellProperties)=>{},
+					/**
+					 * [Fired after retrieving information about a column header and appending it to the table header]
+					 * @param  {[number]} column 			[列的索引]
+					 * @param  {[HTMLTableCellElement]} TH  [头部cell对象]
+					 */
+					afterGetColHeader:(column,TH)=>{},
+					/**
+					 * [获取列头部渲染器后触发]
+					 * @param  {[array]} renderers [包含渲染方法的数组]
+					 */
+					afterGetColumnHeaderRenderers:(renderers)=>{},
+					/**
+					 * [获得行头部后触发]
+					 * @param  {[number]} row [行索引]
+					 * @param  {[HTMLTableCellElement]} TH  [头部的TH对象]
+					 */
+					afterGetRowHeader:(row,TH)=>{},
+					/**
+					 * [获取行头部渲染器后触发]
+					 * @param  {[array]} renderers [包含渲染方法的数组]
+					 */
+					afterGetRowHeaderRenderers:(renderers)=>{},
+					/**
+					 * [隐藏列后触发(hiddenColumns插件开启)]
+					 * @param  {[array]} currentHideConfig     [包含开始被隐藏的实际列数组]
+					 * @param  {[array]} destinationHideConfig [包含结尾被隐藏的实际列数组]
+					 * @param  {[boolean]} actionPossible        [提供的列索引是否有效]
+					 * @param  {[boolean]} stateChanged          [是否影响未被隐藏的列]
+					 */
+					afterHideColumns:(currentHideConfig,destinationHideConfig,actionPossible,stateChanged)=>{},
+					/**
+					 * [隐藏行后触发(hiddenRows插件开启)]
+					 * @param  {[array]} currentHideConfig     [包含开始被隐藏的实际行数组]
+					 * @param  {[array]} destinationHideConfig [包含结尾被隐藏的实际行数组]
+					 * @param  {[boolean]} actionPossible        [提供的行索引是否有效]
+					 * @param  {[boolean]} stateChanged          [是否影响未被隐藏的行]
+					 */
+					afterHideRows:(currentHideConfig,destinationHideConfig,actionPossible,stateChanged)=>{},
+					/**
+					 * [handsontable实例被初始化后触发]
+					 */
+					afterInit:()=>{},
+					/**
+					 * [description]
+					 * @param  {[string]} languageCode [新语言代码]
+					 */
+					afterLanguageChange:(languageCode)=>{},
+					/**
+					 * [the table was switched into listening mode]
+					 */
+					afterListen:()=>{},
+					/**
+					 * [加载数据( loadData()或者updataSettings() )后触发]
+					 * @param  {[boolean]} initialLoad [data在初始化时是否被加载]
+					 */
+					afterLoadData:(initialLoad)=>{},
+					/**
+					 * [合并cell后触发]
+					 * @param  {[CellRange]} 	cellRange  			[被选中的cell]
+					 * @param  {[objetc]}	 	mergeParent 		[parent collection of the provided cell range]
+					 * @param  {[boolean]} 		auto(default false) [是否自动被插件唤醒]
+					 */
+					afterMergeCells:(cellRange,mergeParent,auto)=>{},
+					/**
+					 * [description]
+					 * @param  {[type]} coords          [description]
+					 * @param  {[type]} rowTransformDir [description]
+					 * @param  {[type]} colTransformDir [description]
+					 */
+					afterModifyTransformEnd:(coords,rowTransformDir,colTransformDir)=>{},
+					/***/
+					afterModifyTransformStart:(coords,rowTransformDir,colTransformDir)=>{},
+					/***/
+					afterMomentumScroll:()=>{},
+					/***/
+					afterOnCellContextMenu:(event,coords,TD)=>{},
+					/***/
+					afterOnCellCornerDblClick:(event)=>{},
+					/***/
+					afterOnCellCornerMouseDown:(event)=>{},
+					/***/
+					afterOnCellMouseDown:(event,coords,TD)=>{},
+					/***/
+					afterOnCellMouseOut:(event,coords,TD)=>{},
+					/***/
+					afterOnCellMouseOver:(event,coords,TD)=>{},
+					afterOnCellMouseUp:(event,coords,TD)=>{},
+					afterPaste:(data,coords)=>{},
+					afterPluginsInitialized:()=>{},
+					afterRedo:(action)=>{},
+					afterRefreshDimensions:(previousDimensions,currentDimensions,stateChanged)=>{},
+					afterRemoveCellMeta:(row,column,key,value)=>{},
+					afterRemoveCol:(index,amount,physicalColumns,source)=>{},
+					afterRemoveRow:(index,amount,physicalRows,source)=>{},
+					afterRender:(isForced)=>{},
+					afterRenderer:(TD,row,column,prop,value,cellProperties)=>{},
+					afterRowMove:(rows,target)=>{},
+					afterRowResize:(currentRow,newSize,isDoubleClick)=>{},
+					afterScrollHorizontally:()=>{},
+					afterScrollVertically:()=>{},
+					afterSelection:(row,column,row2,column2,preventScrolling,selectionLayerLevel)=>{},
+					afterSelectionByProp:(row,prop,row2,prop2,preventScrolling,selectionLayerLevel)=>{},
+					afterSelectionEnd:(row,column,row2,column2,selectionLayerLevel)=>{},
+					afterSelectionEndByProp:(row,prop,row2,prop2,selectionLayerLevel)=>{},
+					afterSetCellMeta:(row,column,key,value)=>{},
+					afterSetDataAtCell:(changes,source)=>{},
+					afterSetDataAtRowProp:(changes,source)=>{},
+					afterTrimRow:(currentTrimConfig,destinationTrimConfig,actionPossible,stateChanged)=>{},
+					afterUndo:(action)=>{},
+					afterUnhideColumns:(currentHideConfig,destinationHideConfig,actionPossible,stateChanged)=>{},
+					afterUnhideRows:(currentHideConfig,destinationHideConfig,actionPossible,stateChanged)=>{},
+					afterUnlisten:()=>{},
+					afterUnmergeCells:(cellRange,auto)=>{},
+					afterUntrimRow:(currentTrimConfig,destinationTrimConfig,actionPossible,stateChanged)=>{},
+					afterUpdateSettings:(newSettings)=>{},
+					afterValidate:(isValid,value,row,prop,source)=>{},
+					afterViewportColumnCalculatorOverride:(calc)=>{},
+					afterViewportRowCalculatorOverride:(calc)=>{},
+
+
+
+					beforeAddChild:(parent,element,index)=>{},
+					beforeAutofill:(start,end,data)=>{},
+					beforeAutofillInsidePopulate:(index,direction,input,deltas)=>{},
+					beforeCellAlignment:(stateBefore,range,type,alignmentClass)=>{},
+					beforeChange:(changes,source)=>{},
+					beforeChangeRender:(changes,source)=>{},
+					beforeColumnMove:(columns,target)=>{},
+					beforeColumnResize:(currentColumn,newSize,isDoubleClick)=>{},
+					beforeColumnSort:(currentSortConfig,destinationSortConfigs)=>{},
+					beforeContextMenuSetItems:(menuItems)=>{},
+					beforeContextMenuShow:(context)=>{},
+					beforeCopy:(data,coords)=>{},
+					beforeCreateCol:(index,amount,source)=>{},
+					beforeCreateRow:(index,amount,source)=>{},
+					beforeCut:(data,coords)=>{},
+					beforeDetachChild:(parent,element)=>{},
+					beforeDrawBorders:(corners,borderClassName)=>{},
+					beforeDropdownMenuSetItems:(menuItems)=>{},
+					beforeDropdownMenuShow:(dropdownMenu)=>{},
+					beforeFilter:(conditionsStack)=>{},
+					beforeGetCellMeta:(row,column,cellProperties)=>{},
+					beforeHideColumns:(currentHideConfig,destinationHideConfig,actionPossible)=>{},
+					beforeHideRows:(currentHideConfig,destinationHideConfig,actionPossible)=>{},
+					beforeInit:()=>{},
+					beforeInitWalkontable:(walkontableConfig)=>{},
+					beforeKeyDown:(event)=>{},
+					beforeLanguageChange:(languageCode)=>{},
+					beforeMergeCells:(cellRange,auto)=>{},
+					beforeOnCellContextMenu:(event,coords,TD)=>{},
+					beforeOnCellMouseDown:(event,coords,TD,controller)=>{},
+					beforeOnCellMouseOut:(event,coords,TD)=>{},
+					beforeOnCellMouseOver:(event,coords,TD,controller)=>{},
+					beforeOnCellMouseUp:(event,coords,TD,controller)=>{},
+					beforePaste:(data,coords)=>{},
+					beforeRedo:(action)=>{},
+					beforeRefreshDimensions:(previousDimensions,currentDimensions,actionPossible)=>{},
+					beforeRemoveCellClassNames:()=>{},
+					beforeRemoveCellMeta:(row,column,key,value)=>{},
+					beforeRemoveCol:(index,amount,physicalColumns,source)=>{},
+					beforeRemoveRow:(index,amount,physicalRows,source)=>{},
+					beforeRender:(isForced)=>{},
+					beforeRenderer:(TD,row,column,prop,value,cellProperties)=>{},
+					beforeRowMove:(rows,target)=>{},
+					beforeRowResize:(currentRow,newSize,isDoubleClick)=>{},
+					beforeSetRangeEnd:(coords)=>{},
+					beforeSetRangeStart:(coords)=>{},
+					beforeSetRangeStartOnly:(coords)=>{},
+					beforeStretchingColumnWidth:(stretchedWidth,column)=>{},
+					beforeTouchScroll:()=>{},
+					beforeTrimRow:(currentTrimConfig,destinationTrimConfig,actionPossible)=>{},
+					beforeUndo:(action)=>{},
+					beforeUnhideColumns:(currentHideConfig,destinationHideConfig,actionPossible)=>{},
+					beforeUnhideRows:(currentHideConfig,destinationHideConfig,actionPossible)=>{},
+					beforeUnmergeCells:(cellRange,auto)=>{},
+					beforeUntrimRow:(currentTrimConfig,destinationTrimConfig,actionPossible)=>{},
+					beforeValidate:(value,row,prop,source)=>{},
+					beforeValueRender:(value,cellProperties)=>{},
+					construct:()=>{},
+					hiddenColumn:(column)=>{},
+					hiddenRow:(row)=>{},
+					init:()=>{},
+					modifyAutofillRange:(startArea,entireArea)=>{},
+					modifyCol:(column)=>{},
+					modifyColHeader:(column)=>{},
+					modifyColumnHeaderHeight:()=>{},
+					modifyColWidth:(width,column)=>{},
+					modifyCopyableRange:(copyableRanges)=>{},
+					modifyData:(row,column,valueHolder,ioMode)=>{},
+					modifyGetCellCoords:(row,column,topmost)=>{},
+					modifyRow:(row)=>{},
+					modifyRowData:(row)=>{},
+					modifyRowHeader:(row)=>{},
+					modifyRowHeaderWidth:(rowHeaderWidth)=>{},
+					modifyRowHeight:(height,row)=>{},
+					modifyTransformEnd:(delta)=>{},
+					modifyTransformStart:(delta)=>{},
+					persistentStateLoad:(key,valuePlaceholder)=>{},
+					persistentStateReset:(key)=>{},
+					persistentStateSave:(key,value)=>{},
+					skipLengthCache:(delay)=>{},
+					unmodifyCol:(column)=>{},
+					unmodifyRow:(row)=>{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				}
 			}
 		},
