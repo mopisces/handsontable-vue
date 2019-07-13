@@ -488,31 +488,82 @@
 					 */
 					afterMergeCells:(cellRange,mergeParent,auto)=>{},
 					/**
-					 * [description]
-					 * @param  {[type]} coords          [description]
-					 * @param  {[type]} rowTransformDir [description]
-					 * @param  {[type]} colTransformDir [description]
+					 * [Fired after the end of the selection is being modified]
+					 * @param  {[CellCoords]} coords      [Visual coords of the freshly selected cell.]
+					 * @param  {[number]} rowTransformDir [-1 if trying to select a cell with a negative row index. 0 otherwise]
+					 * @param  {[number]} colTransformDir [-1 if trying to select a cell with a negative column index. 0 otherwise]
 					 */
 					afterModifyTransformEnd:(coords,rowTransformDir,colTransformDir)=>{},
-					/***/
+					/**
+					 * [Fired after the start of the selection is being modified ]
+					 * @param  {[CellCoords]} coords      [Visual coords of the freshly selected cell.]
+					 * @param  {[number]} rowTransformDir [-1 if trying to select a cell with a negative row index. 0 otherwise]
+					 * @param  {[number]} colTransformDir [-1 if trying to select a cell with a negative column index. 0 otherwise]
+					 */
 					afterModifyTransformStart:(coords,rowTransformDir,colTransformDir)=>{},
-					/***/
+					/**
+					 * [移动端滑动后触发]
+					 */
 					afterMomentumScroll:()=>{},
-					/***/
+					/**
+					 * [右键点击列或者行头部时触发]
+					 * @param  {[Event]} event  	 	   [右键菜单事件]
+					 * @param  {[CellCoords]} coords 	   [cell坐标对象,包含行/列的索引]
+					 * @param  {[HTMLTableCellElement]} TD [cell的TD或TH对象]
+					 */
 					afterOnCellContextMenu:(event,coords,TD)=>{},
-					/***/
+					/**
+					 * [cell角被双击后触发]
+					 * @param  {[Event]} event [dblclick 事件对象]
+					 */
 					afterOnCellCornerDblClick:(event)=>{},
-					/***/
+					/**
+					 * [cell角鼠标按下后触发]
+					 * @param  {[Event]} event [mousedown 事件对象]
+					 */
 					afterOnCellCornerMouseDown:(event)=>{},
-					/***/
+					/**
+					 * [cell鼠标按下后触发]
+					 * @param  {[Event]} event  			[ousedown 事件对象]
+					 * @param  {[CellCoords]} coords 		[cell坐标对象,包含行/列的索引]
+					 * @param  {[HTMLTableCellElement]} TD 	[cell的TD或TH对象]
+					 */
 					afterOnCellMouseDown:(event,coords,TD)=>{},
-					/***/
+					/**
+					 * [光标离开行或者列头部后触发]
+					 * @param  {[Event]} event  			[mouseout 事件对象]
+					 * @param  {[CellCoords]} coords 		[离开的cell坐标对象,包含行/列的索引]
+					 * @param  {[HTMLTableCellElement]} TD 	[cell的TD或TH对象]
+					 */
 					afterOnCellMouseOut:(event,coords,TD)=>{},
-					/***/
+					/**
+					 * [光标划过cell后触发]
+					 * @param  {[Event]} event  			[mouseover 事件对象]
+					 * @param  {[CellCoords]} coords 		[cell坐标对象,包含行/列的索引]
+					 * @param  {[HTMLTableCellElement]} TD  [cell的TD或TH对象]
+					 */
 					afterOnCellMouseOver:(event,coords,TD)=>{},
+					/**
+					 * [鼠标点击cell后触发]
+					 * @param  {[Event]} event  			[mouseup 事件对象]
+					 * @param  {[CellCoords]} coords 		[cell坐标对象,包含行/列的索引]
+					 * @param  {[HTMLTableCellElement]} TD  [cell的TD或TH对象]
+					 */
 					afterOnCellMouseUp:(event,coords,TD)=>{},
+					/**
+					 * [复制到表格后触发]
+					 * @param  {[array]} data   [复制的值]
+					 * @param  {[array]} coords [复制的目标区域坐标]
+					 */
 					afterPaste:(data,coords)=>{},
+					/**
+					 * [所有插件初始化后触发]
+					 */
 					afterPluginsInitialized:()=>{},
+					/**
+					 * [description]
+					 * @param  {[object]} action [description]
+					 */
 					afterRedo:(action)=>{},
 					afterRefreshDimensions:(previousDimensions,currentDimensions,stateChanged)=>{},
 					afterRemoveCellMeta:(row,column,key,value)=>{},
@@ -627,20 +678,6 @@
 					skipLengthCache:(delay)=>{},
 					unmodifyCol:(column)=>{},
 					unmodifyRow:(row)=>{}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 				}
 			}
 		},
