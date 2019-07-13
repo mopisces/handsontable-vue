@@ -1,10 +1,5 @@
 <template>
 	<div  class="table">
-			<div class="handle-box">
-        <button type="button" @click="hiddenCol('Country')">Country</button>
-        <button type="button" @click="hiddenCol('Code')">Code</button>
-        <button type="button" @click="hiddenCol('Currency')">Currency</button>
-			</div>
 			<hot-table  :settings="hotSettings" licenseKey="non-commercial-and-evaluation" ref="testHot" :root="root"></hot-table>
       <button type="button" @click="exportCsv()">导出文件（CSV格式）</button>
 	</div>
@@ -240,13 +235,56 @@
 													Vertical: htTop, htMiddle, htBottom*/
 					
 					customBorders:true,//设置边框
+					/*customBorders:[
+										//自定义边框
+						{
+							range:{		//定义连续的边框 
+								from:{row: 1,col: 1},
+								to:{row: 3,col:4}
+							},
+							top:{
+								width:2,
+								color:'#5292F7'
+							},
+							left:{
+								width: 2,
+								color: 'orange'
+							},
+							bottom:{
+								width: 2,
+								color:'red'
+							},
+							right:{
+								width: 2,
+								color: 'magenta'
+							}
+						},
+						{		//定义单独cell的边框
+							row: 2,
+							col: 2,
+							left:{
+								width: 2,
+								color: 'red'
+							},
+							right:{
+								width: 1,
+								color: 'green'
+							}
+						}
+					],*/
 					comments: true,//cell注释(和cell一起使用)
 					cell:[
 						{row: 1, col: 1, comment: {value: 'Some comment'}},//第2行第2列的cell添加注释
 						{row: 2, col: 2, comment: {value: 'More comments'}}
 					],					
+					currentRowClassName:'currentRow',//当前行的className
+					currentColClassName: 'currentCol',//当前列的className
 
-					
+
+
+
+
+
 
 					outsideClickDeselects: (event)=>{
 						console.dir(1)
@@ -357,6 +395,15 @@
 			}
 		},
 		methods:{
+			howToCallMethod(){
+				/*this.$refs.testHot.hotInstance//call core methods*/
+				let hot = this.$refs.testHot.hotInstance;//include core methods object
+				/*Example:
+				hot.addHook('beforeInit', myCallback);
+				详细的core方法见core.js
+				*/
+
+			},
 			/**
 			 * [exportCsv 导出csv文件]
 			 */
@@ -374,79 +421,6 @@
 					rowDelimiter: '\r\n',//设置行分隔符
 					rowHeaders: true//是否导出行头
 				});
-			},
-			newCol(param){
-				/*this.data.push({
-							id: 0,
-							flag: 'EUR',
-							currencyCode: 'EUR',
-							currency: 'Euro',
-							level: 0.9033,
-							units: 'EUR / USD',
-							asOf: '08/19/2019',
-							onedChng: 0.0026,
-							data:'07/11/2019',
-							stars:5,
-							range:6,
-							phone:'huawei'
-						});*/
-				//this.hotSettings.hiddenColumns.columns=[0,1]
-				//console.dir(param)
-				/*let len = this.hotSettings.colHeaders.length;
-				this.$refs.testHot.hotInstance.alter('insert_col',len + 1,1);
-				var headers = this.hotSettings.colHeaders;
-				headers[len] = param;
-				for (var i = this.dataArray.length - 1; i >= 0; i--) {
-					this.dataArray[i].hello = i
-				}
-				this.$refs.testHot.hotInstance.updateSettings({
-					colHeaders:headers
-				});//data是Array时，创建新列*/
-				//console.dir(this.$refs.testHot.hotInstance.getColHeader());
-				console.dir(this.$refs.testHot.hotInstance)
-				var search = this.$refs.testHot.hotInstance.getPlugin('hiddenColumns');
-				var hiddenColumns = this.hotSettings.hiddenColumns.columns
-
-				let headers = this.$refs.testHot.hotInstance.getColHeader();
-				for (var i = headers.length - 1; i >= 0; i--) {
-					if(headers[i] == param){
-						let index = this.hotSettings.hiddenColumns.columns.indexOf(i)
-						if(  index > -1 ){
-							hiddenColumns.splice(index,1)
-						}else{
-							hiddenColumns.push(i)
-						}
-					}
-				}
-				this.$refs.testHot.hotInstance.updateSettings({
-					hiddenColumns: {
-						columns:hiddenColumns,//隐藏的列index (0是第一列)
-						indicators:false//是否显示隐藏标志
-					}
-				});
-				//console.dir()
-				//console.dir(this.$refs.testHot.hotInstance)
-				//this.$refs.testHot.hotInstance.scrollViewportTo(18,1);//滚动到指定位置
-				//console.dir(this.$refs.testHot.hotInstance.scrollViewportTo(18,1))
-				/*var search = this.$refs.testHot.hotInstance.getPlugin('search');
-				var queryResult = search.query('iphone');
-				console.log(queryResult);
-				this.$refs.testHot.hotInstance.render();//搜索*/
-				//console.dir(this.$refs.testHot)
-				/*var downLoad = this.$refs.testHot.hotInstance.getPlugin('exportFile');
-				downLoad.downloadFile('csv', {
-					bom: false,//编码方式
-					columnDelimiter: ',',//列的分隔符
-					columnHeaders: true,//是否导出列头
-					exportHiddenColumns: true,//是否导出隐藏的列
-					exportHiddenRows: true,//是否导出隐藏的行
-					fileExtension: 'csv',//设置文件的后缀名
-					filename: 'Handsontable-CSV-file_[YYYY]-[MM]-[DD]',//设置文件的名称
-					mimeType: 'text/csv',//设置描述消息内容类型的因特网标准
-					rowDelimiter: '\r\n',//设置行分隔符
-					rowHeaders: true//是否导出行头
-				})//导出Excel文件*/
-
 			},
 			getInitializedElements(colIndex){
 				var div = document.createElement('div');
