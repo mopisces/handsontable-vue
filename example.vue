@@ -685,25 +685,88 @@
 					/**
 					 * [cell数据被改变后触发]
 					 * @param  {[array]} changes [包含改变之前和之后值的数组]
-					 * @param  {[string]} source [触发源]
+					 * @param  {[string]} source [触的发源]
 					 */
 					afterSetDataAtCell:(changes,source)=>{},
 					/**
-					 * [description]
-					 * @param  {[type]} changes [description]
-					 * @param  {[type]} source  [description]
+					 * [cell数据被改变后触发]
+					 * @param  {[array]}  changes [包含改变值的数组  [[row, prop, oldValue, value], ...]  ]
+					 * @param  {[string]} source  [触的发源]
 					 */
 					afterSetDataAtRowProp:(changes,source)=>{},
+					/**
+					 * [修剪指定行后触发]
+					 * @param  {[array]} currentTrimConfig     [包含开始修剪行index的数组]
+					 * @param  {[array]} destinationTrimConfig [包含结束修剪行index的数组]
+					 * @param  {[boolean]} actionPossible      [是否绑定到table上]
+					 * @param  {[boolean]} stateChanged        [是否影响所有被修剪行]
+					 * @return {[undfined|boolean]}            [返回false时修剪方法不会被执行]
+					 */
 					afterTrimRow:(currentTrimConfig,destinationTrimConfig,actionPossible,stateChanged)=>{},
+					/**
+					 * [撤销后触发]
+					 * @param  {[object]} action [包含data,index,actionType]
+					 */
 					afterUndo:(action)=>{},
+					/**
+					 * [显示隐藏列后触发]
+					 * @param  {[array]}   currentHideConfig     [包含显示的列索引的数组]
+					 * @param  {[array]}   destinationHideConfig [包含隐藏的列索引的数组]
+					 * @param  {[boolean]} actionPossible        [列的索引是否有效]
+					 * @param  {[boolean]} stateChanged          [改方法是否影响隐藏的列]
+					 */
 					afterUnhideColumns:(currentHideConfig,destinationHideConfig,actionPossible,stateChanged)=>{},
+					/**
+					 * [显示隐藏行后触发]
+					 * @param  {[array]}   currentHideConfig     [包含显示的行索引的数组]
+					 * @param  {[array]}   destinationHideConfig [包含隐藏的行索引的数组]
+					 * @param  {[boolean]} actionPossible        [行的索引是否有效]
+					 * @param  {[boolean]} stateChanged          [改方法是否影响隐藏的行]
+					 */
 					afterUnhideRows:(currentHideConfig,destinationHideConfig,actionPossible,stateChanged)=>{},
+					/**
+					 * [表关闭listening mode后触发]
+					 */
 					afterUnlisten:()=>{},
+					/**
+					 * [不合并cell后触发]
+					 * @param  {[type]}    cellRange 		   [description]
+					 * @param  {[boolean]} auto(defalut false) [是否自动被插件执行]
+					 */
 					afterUnmergeCells:(cellRange,auto)=>{},
+					/**
+					 * [trimRow插件的unTrimRow方法触发]
+					 * @param  {[array]}   currentTrimConfig     [包含未修剪行索引的数组]
+					 * @param  {[array]}   destinationTrimConfig [包含修剪行索引的数组]
+					 * @param  {[boolean]} actionPossible        [是否所有行索引绑定到table]
+					 * @param  {[boolean]} stateChanged          [是否影响所有修剪行]
+					 * @return {[undefine|boolean]}              [返回false,unTrimRow方法不会被执行]
+					 */
 					afterUntrimRow:(currentTrimConfig,destinationTrimConfig,actionPossible,stateChanged)=>{},
+					/**
+					 * [更新table配置后触发]
+					 * @param  {[object]} newSettings [新的配置对象]
+					 */
 					afterUpdateSettings:(newSettings)=>{},
+					/**
+					 * [validator 方法被定义执行后触发]
+					 * @param  {Boolean} isValid [是否有效的]
+					 * @param  {[*]}             value   [The value in question.]
+					 * @param  {[number]}        row     [行索引]
+					 * @param  {[string|number]} prop    [propty名称或者列的索引]
+					 * @param  {[string]}        source  [触发的源]
+					 * @return {[undefine|boolean]} [返回false,validator 方法不会被执行]
+					 */
 					afterValidate:(isValid,value,row,prop,source)=>{},
+					/**
+					 * [viewportColumnCalculatorOverride 方法内部触发]
+					 * @param  {[object]} calc [行的计算器]
+					 */
 					afterViewportColumnCalculatorOverride:(calc)=>{},
+					/**
+					 * [viewportRowCalculatorOverride 方法内部触发]
+					 * @param  {[object]} calc [行的计算器]
+					 */
 					afterViewportRowCalculatorOverride:(calc)=>{},
 
 
