@@ -561,26 +561,138 @@
 					 */
 					afterPluginsInitialized:()=>{},
 					/**
-					 * [description]
-					 * @param  {[object]} action [description]
+					 * [恢复以后触发]
+					 * @param  {[object]} action [包含data,index,actionType]
 					 */
 					afterRedo:(action)=>{},
+					/**
+					 * [在窗口大小变化后触发]
+					 * @param  {[object]} previousDimensions [调整之前容器的大小]
+					 * @param  {[object]} currentDimensions  [调整之后容器的大小]
+					 * @param  {[boolean]} stateChanged      [容器是否被调节大小]
+					 */
 					afterRefreshDimensions:(previousDimensions,currentDimensions,stateChanged)=>{},
+					/**
+					 * [cell删除后触发]
+					 * @param  {[number]} row    [被移除cell的行索引]
+					 * @param  {[number]} column [被移除cell的列索引]
+					 * @param  {[string]} key    [被移除cell的key值]
+					 * @param  {[*]} 	  value  [已删除的cell的值]
+					 */
 					afterRemoveCellMeta:(row,column,key,value)=>{},
+					/**
+					 * [一列或者多列移除后触发]
+					 * @param  {[number]} index           [起始列的可视索引]
+					 * @param  {[number]} amount          [删除列的数量]
+					 * @param  {[array]}  physicalColumns [被删除列的数据组成的数组]
+					 * @param  {[string]} source          [触发的源]
+					 */
 					afterRemoveCol:(index,amount,physicalColumns,source)=>{},
+					/**
+					 * [一行或者多行移除后触发]
+					 * @param  {[number]} index        [起始行的可视索引]
+					 * @param  {[number]} amount       [删除行的数量]
+					 * @param  {[array]}  physicalRows [被删除行的数据组成的数组]
+					 * @param  {[string]} source       [触发的源]
+					 */
 					afterRemoveRow:(index,amount,physicalRows,source)=>{},
+					/**
+					 * [handsontable被渲染后触发]
+					 * @param  {boolean} isForced [渲染被更改配置或数据触发时为true,被滑动或选择触发时为false]
+					 */
 					afterRender:(isForced)=>{},
+					/**
+					 * [结束渲染cell后触发(在render结束后触发)]
+					 * @param  {[HTMLTableCellElement]} TD      [当前已渲染的cell的TD element]
+					 * @param  {[number]} 		 row            [行索引]
+					 * @param  {[number]} 		 column         [列索引]
+					 * @param  {[string|number]} prop           [列的property值,如果数据是数组,返回列的索引]
+					 * @param  {[*]}			 value          [被渲染cell的值]
+					 * @param  {[object]} 		 cellProperties [包含列propties的对象]
+					 */
 					afterRenderer:(TD,row,column,prop,value,cellProperties)=>{},
+					/**
+					 * [多行被移动后触发]
+					 * @param  {[array]} rows    [包含被移动行索引的数组]
+					 * @param  {[number]} target [行移动的目标索引]
+					 */
 					afterRowMove:(rows,target)=>{},
+					/**
+					 * [行高度被调整后触发]
+					 * @param  {[number]}  currentRow    [被调整行的索引]
+					 * @param  {[number]}  newSize       [计算新的行高度]
+					 * @param  {Boolean} isDoubleClick   [记录是否是双击的标志]
+					 */
 					afterRowResize:(currentRow,newSize,isDoubleClick)=>{},
+					/**
+					 * [水平移动滚动条事件后触发]
+					 */
 					afterScrollHorizontally:()=>{},
+					/**
+					 * [垂直移动滚动条事件后触发]
+					 */
 					afterScrollVertically:()=>{},
-					afterSelection:(row,column,row2,column2,preventScrolling,selectionLayerLevel)=>{},
-					afterSelectionByProp:(row,prop,row2,prop2,preventScrolling,selectionLayerLevel)=>{},
+					/**
+					 * [一个或多个cell被选中后触发(每选中一个触发一次)]
+					 * @param  {[number]} row              [开始cell的行索引]
+					 * @param  {[number]} column           [开始cell的列索引]
+					 * @param  {[number]} row2             [结束cell的行索引]
+					 * @param  {[number]} column2          [结束cell的列索引]
+					 * @param  {[object]} preventScrolling [Object with value property where its value change will be observed]
+					 * @param  {[number]} selectionLayerLevel [被选中的层级]
+					 */
+					afterSelection:(row,column,row2,column2,preventScrolling,selectionLayerLevel)=>{
+						preventScrolling.value = true;//选中后是否防止滚动
+					},
+					/**
+					 * [一个或多个cell被选中后触发]
+					 * @param  {[number]} row              [开始行的索引]
+					 * @param  {[string]} prop             [开始数据的property name]
+					 * @param  {[number]} row2             [结束行的索引]
+					 * @param  {[string]} prop2            [结束数据的property name]
+					 * @param  {[object]} preventScrolling [Object with value property where its value change will be observed]
+					 * @param  {[number]} selectionLayerLevel [被选中的层级]
+					 */
+					afterSelectionByProp:(row,prop,row2,prop2,preventScrolling,selectionLayerLevel)=>{
+						preventScrolling.value = true;//选中后是否防止滚动
+					},
+					/**
+					 * [一个或多个cell被选中结束后触发(多个cell选中只触发一次)]
+					 * @param  {[number]} row                 [开始cell的行索引]
+					 * @param  {[number]} column              [开始cell的列索引]
+					 * @param  {[number]} row2                [结束cell的行索引]
+					 * @param  {[number]} column2             [结束cell的列索引]
+					 * @param  {[number]} selectionLayerLevel [被选中的层级]
+					 */
 					afterSelectionEnd:(row,column,row2,column2,selectionLayerLevel)=>{},
+					/**
+					 * [一个或多个cell被选中结束后触发(多个cell选中只触发一次)]
+					 * @param  {[number]} row                 [开始cell的行索引]
+					 * @param  {[string]} prop                [开始cell的property name]
+					 * @param  {[number]} row2                [结束cell的行索引]
+					 * @param  {[string]} prop2               [结束cell的property name]
+					 * @param  {[number]} selectionLayerLevel [被选中的层级]
+					 */
 					afterSelectionEndByProp:(row,prop,row2,prop2,selectionLayerLevel)=>{},
+					/**
+					 * [cell meta 被修改后触发]
+					 * @param  {[number]} row    [行索引]
+					 * @param  {[number]} column [列索引]
+					 * @param  {[string]} key    [更新的meta键]
+					 * @param  {[*]} value       [更新的meta值]
+					 */
 					afterSetCellMeta:(row,column,key,value)=>{},
+					/**
+					 * [cell数据被改变后触发]
+					 * @param  {[array]} changes [包含改变之前和之后值的数组]
+					 * @param  {[string]} source [触发源]
+					 */
 					afterSetDataAtCell:(changes,source)=>{},
+					/**
+					 * [description]
+					 * @param  {[type]} changes [description]
+					 * @param  {[type]} source  [description]
+					 */
 					afterSetDataAtRowProp:(changes,source)=>{},
 					afterTrimRow:(currentTrimConfig,destinationTrimConfig,actionPossible,stateChanged)=>{},
 					afterUndo:(action)=>{},
