@@ -367,15 +367,15 @@
 					afterCreateCol:(index,amount,source)=>{},
 					/**
 					 * [创建新行后触发]
-					 * @param  {[type]} index  [新插入的第一行的索引]
-					 * @param  {[type]} amount [新创建的行数]
-					 * @param  {[type]} source [触发的源]
+					 * @param  {[number]} index  [新插入的第一行的索引]
+					 * @param  {[number]} amount [新创建的行数]
+					 * @param  {[string]} source [触发的源]
 					 */
 					afterCreateRow:(index,amount,source)=>{},
 					/**
 					 * [表中数据被剪切后触发]
-					 * @param  {[type]} data   [被剪切的值( array(array) )]
-					 * @param  {[type]} coords [被剪切的区域坐标(array(object)) 包含起始坐标和结束坐标]
+					 * @param  {[array]} data   [被剪切的值( array(array) )]
+					 * @param  {[array]} coords [被剪切的区域坐标(array(object)) 包含起始坐标和结束坐标]
 					 */
 					afterCut:(data,coords)=>{},
 					/**
