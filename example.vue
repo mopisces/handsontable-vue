@@ -828,30 +828,139 @@
 					beforeUntrimRow:(currentTrimConfig,destinationTrimConfig,actionPossible)=>{},
 					beforeValidate:(value,row,prop,source)=>{},
 					beforeValueRender:(value,cellProperties)=>{},
+
+					/**
+					 * [handsontable实例被创建后触发]
+					 */
 					construct:()=>{},
+					/**
+					 * [HiddenColumns插件触发(无论是否有隐藏的列)]
+					 * @param  {[type]} column [description]
+					 */
 					hiddenColumn:(column)=>{},
+					/**
+					 * [修改数据行后触发]
+					 * @param  {[number]} row [行索引]
+					 */
 					hiddenRow:(row)=>{},
+					/**
+					 * [handsontable实例初始化时触发,在渲染之前]
+					 */
 					init:()=>{},
+					/**
+					 * [description]
+					 * @param  {[type]} startArea  [description]
+					 * @param  {[type]} entireArea [description]
+					 * @return {[type]}            [description]
+					 */
 					modifyAutofillRange:(startArea,entireArea)=>{},
+					/**
+					 * [修改数据列后触发]
+					 * @param  {[type]} column [修改数据列的索引]
+					 */
 					modifyCol:(column)=>{},
+					/**
+					 * [修改列头部后触发]
+					 * @param  {[number]} column [列的索引]
+					 */
 					modifyColHeader:(column)=>{},
+					/**
+					 * [修改列头部宽度时触发]
+					 */
 					modifyColumnHeaderHeight:()=>{},
+					/**
+					 * [修改列宽度后触发]
+					 * @param  {[number]} width  [修改后宽度]
+					 * @param  {[number]} column [列的索引]
+					 */
 					modifyColWidth:(width,column)=>{},
+					/**
+					 * [Fired to allow modifying the copyable range with a callback function]
+					 * @param  {[array]} copyableRanges [包含定义cell对象的数组]
+					 */
 					modifyCopyableRange:(copyableRanges)=>{},
+					/**
+					 * [修改cell数据后触发]
+					 * @param  {[number]} row         [行索引]
+					 * @param  {[number]} column      [列索引]
+					 * @param  {[object]} valueHolder [可以修改.value值的对象]
+					 * @param  {[string]} ioMode      [被触发的函数名称]
+					 */
 					modifyData:(row,column,valueHolder,ioMode)=>{},
+					/**
+					 * [getCell 方法获取cell坐标触发]
+					 * @param  {[number]}  row     [行索引]
+					 * @param  {[number]}  column  [列索引]
+					 * @param  {[boolean]} topmost [true返回TD Element]
+					 */
 					modifyGetCellCoords:(row,column,topmost)=>{},
+					/**
+					 * [修改数据行后触发]
+					 * @param  {[number]} row [修改数据行的索引]
+					 */
 					modifyRow:(row)=>{},
+					/**
+					 * [description]
+					 * @param  {[type]} row [description]
+					 * @return {[type]}     [description]
+					 */
 					modifyRowData:(row)=>{},
+					/**
+					 * [修改行头部后触发]
+					 * @param  {[number]} row [行的索引]
+					 */
 					modifyRowHeader:(row)=>{},
+					/**
+					 * [修改行头部宽度时触发]
+					 */
 					modifyRowHeaderWidth:(rowHeaderWidth)=>{},
+					/**
+					 * [修改行高度后触发]
+					 * @param  {[number]} height [修改后高度]
+					 * @param  {[number]} row    [行的索引]
+					 */
 					modifyRowHeight:(height,row)=>{},
+					/**
+					 * [Fired when the end of the selection is being modified]
+					 * @param  {[CellCoords]} delta [Cell coords object declaring the delta of the new selection relative to the previous one.]
+					 */
 					modifyTransformEnd:(delta)=>{},
+					/**
+					 * [Fired when the start of the selection is being modified ]
+					 * @param  {[CellCoords]} delta [Cell coords object declaring the delta of the new selection relative to the previous one.]
+					 */
 					modifyTransformStart:(delta)=>{},
+					/**
+					 * [loading value 后保存表的状态到本地]
+					 * @param  {[string]} key              [键名]
+					 * @param  {[object]} valuePlaceholder [valuePlaceholder.value]
+					 */
 					persistentStateLoad:(key,valuePlaceholder)=>{},
+					/**
+					 * [重置本地table状态]
+					 * @param  {[string]} key [键名]
+					 */
 					persistentStateReset:(key)=>{},
+					/**
+					 * [保存表的状态(修改cell大小)到本地]
+					 * @param  {[string]} key   [键名称]
+					 * @param  {[mix]}    value [值]
+					 */
 					persistentStateSave:(key,value)=>{},
+					/**
+					 * [用于在定义的时间段内跳过长度缓存计算]
+					 * @param  {[number]} delay [延迟的时间]
+					 */
 					skipLengthCache:(delay)=>{},
+					/**
+					 * [Fired when a column index is about to be de-modified by a callback function.]
+					 * @param  {[number]} column [列索引]
+					 */
 					unmodifyCol:(column)=>{},
+					/**
+					 * [Fired when a physical row index is about to be de-modified by a callback function.]
+					 * @param  {[number]} row [行索引]
+					 */
 					unmodifyRow:(row)=>{}
 				}
 			}
