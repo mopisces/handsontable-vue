@@ -240,4 +240,32 @@ getDataAtRowProp(row, prop);
  * @return {string} [数据类型]
  */
 getDataType(rowFrom, columnFrom, rowTo, columnTo);
-	
+/**
+ * [返回HandsonTable的实例]
+ * @return {instance} [HandsonTable的实例]
+ */
+getInstance();
+/**
+ * [返回指定插件名的实例]
+ * @param {string} [pluginName] [插件名称]
+ * @return {instance}           [插件实例]
+ */
+getPlugin(pluginName);
+/**
+ * [返回指定行的行头或者全部行头组成的数组]
+ * @param {number} [row](可选) [行索引]
+ * @return {} [指定行的行头或者全部行头组成的数组]
+ */
+getRowHeader(row);
+/**
+ * [返回指定行的行高]
+ * @param {number} [row] [行的索引]
+ * @return {number}      [指定行的行高]
+ */
+getRowHeight(row);
+/**
+ * []
+ * @return {object} [description]
+ */
+getSchema();
+getSelected();
