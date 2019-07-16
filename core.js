@@ -182,11 +182,62 @@ getCoords(element);
  */
 getCopyableData(row, column);
 /**
- * []
- * @param {[number]} [varname] [description]
- * @param {[number]} [varname] [description]
- * @param {[number]} [varname] [description]
- * @param {[number]} [varname] [description]
- * @return {[string]} [description]
+ * [返回选中区域的值(每个列用TAB分割,每个行用新行的标识分开)]
+ * @param {[number]} [startRow] [开始cell的行索引]
+ * @param {[number]} [startCol] [开始cell的列索引]
+ * @param {[number]} [endRow]   [结束cell的行索引]
+ * @param {[number]} [endCol]   [结束cell的列索引]
+ * @return {[string]} [选中区域的值]
  */
 getCopyableText(startRow, startCol, endRow, endCol);
+/**
+ * [返回指定区域的值]
+ * @param {[number]} [row]     [开始的行索引]
+ * @param {[number]} [column]  [开始的列索引]
+ * @param {[number]} [row2]    [结束的行索引]
+ * @param {[number]} [column2] [结束的行索引]
+ * @return {[array]} [指定区域的值]
+ */
+getData(row, column, row2, column2);
+/**
+ * [返回指定cell的值]
+ * @param {[number]} [row] [行索引]
+ * @param {[number]} [column] [列索引]
+ * @return {[*]}               [选中cell的值]
+ */
+getDataAtCell(row, column);
+/**
+ * [从原始数据中返回指定列的cell的值]
+ * @param {[number]} [column] [可见列的索引]
+ * @return {array}            [cell值组成的数组]
+ */
+getDataAtCol(column);
+/**
+ * [返回指定列prop的cell值]
+ * @param {string|number} [prop] [列名称或者列索引]
+ * @return {array}               [cell值组成的数组]
+ */
+getDataAtProp(prop);
+/**
+ * [返回指定行的数据]
+ * @param {number} [row] [指定的行索引]
+ * @return {array}       [指定行数据数组]
+ */
+getDataAtRow(row);
+/**
+ * [返回指定行的指定列prop的值]
+ * @param {number} [row] [行索引]
+ * @param {string} [prop] [列prop值]
+ * @return {*} [cell的值]
+ */
+getDataAtRowProp(row, prop);
+/**
+ * [获取指定区域的数据类型(type对应的值)]
+ * @param {number} [rowFrom] [开始的行索引]
+ * @param {number} [columnFrom] [开始的列索引]
+ * @param {number} [rowTo] [结束的行索引]
+ * @param {number} [columnTo] [结束的列索引]
+ * @return {string} [数据类型]
+ */
+getDataType(rowFrom, columnFrom, rowTo, columnTo);
+	
